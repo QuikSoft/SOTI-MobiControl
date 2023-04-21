@@ -1,0 +1,18 @@
+#!/usr/bin/env js
+var file = new mobicontrol.io.File('sdcard/SdcardDeviceInfo.ini');
+var buttonLabels = ['Left', 'Center', 'Right'];
+mobicontrol.message.createInfoDialog('')
+    .withButtons(buttonLabels[0], buttonLabels[1], buttonLabels[2])
+    .withQuestionIcon()
+    .withTitle('Location Entrance Gate')
+    .withCallback(onConfirm).show();
+
+function onConfirm(result) {
+    if (result.buttonIndex != null) {
+        mobicontrol.log.info('The ' + buttonLabels[result.buttonIndex] + ' location was chosen.');
+        mobicontrol.log.info('File Exists');
+        file.writeText('[DeviceInfo]' + "\n" + 'Location = ' + buttonLabels[result.buttonIndex]);
+
+        mobicontrol.agent.checkIn();
+    }
+}
