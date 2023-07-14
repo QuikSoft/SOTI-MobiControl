@@ -1,3 +1,4 @@
+# Cert Hash
 The Certhash.apk will provide you with System Signature Information.
 The information displayed will contain.
 1. System signature hash
